@@ -3,3 +3,4 @@ alpaca-py==0.40.1
 kafka-python==2.2.10
 requests
 nltk
+apache-flink==1.19.0

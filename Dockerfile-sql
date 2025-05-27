@@ -1,24 +1,9 @@
 # base image
 FROM flink:1.19-scala_2.12-java11
 
-# Adds a helper script (sql-client.sh) to the image - used to launch the SQL client
-COPY sql-client.sh /opt/sql-client/
-
 # Create Library Directory
 RUN mkdir -p /opt/sql-client/lib
 
 # Download connector libraries - making them available to the SQL Client at runtime
-RUN wget -P /opt/sql-client/lib/ https://repo.maven.apache.org/maven2/org/apache/flink/flink-sql-connector-kafka/1.19.0/flink-sql-connector-kafka-1.19.0.jar; \
-    wget -P /opt/sql-client/lib/ https://repo.maven.apache.org/maven2/org/apache/flink/flink-connector-jdbc/3.1.1-1.17/flink-connector-jdbc-3.1.1-1.17.jar; \
-    wget -P /opt/sql-client/lib/ https://repo.maven.apache.org/maven2/org/apache/flink/flink-json/1.17.1/flink-json-1.17.1.jar; \
-    wget -P /opt/sql-client/lib/ https://jdbc.postgresql.org/download/postgresql-42.5.4.jar; \
-    wget -P /opt/sql-client/lib/ https://repo.maven.apache.org/maven2/org/apache/flink/flink-sql-avro-confluent-registry/1.19.0/flink-sql-avro-confluent-registry-1.19.0.jar;
-
-# Set Working Directory and Environment Variable
-WORKDIR /opt/sql-client
-ENV SQL_CLIENT_HOME /opt/sql-client
-
-# Entrypoint Script
-COPY docker-entrypoint.sh /opt/sql-client
-RUN chmod +x /opt/sql-client/docker-entrypoint.sh
-ENTRYPOINT ["/opt/sql-client/docker-entrypoint.sh"]
+RUN wget -P /opt/sql-client/lib/  https://repo1.maven.org/maven2/org/apache/flink/flink-sql-connector-kafka/3.2.0-1.19/flink-sql-connector-kafka-3.2.0-1.19.jar; \
+    wget -P /opt/sql-client/lib/  https://repo1.maven.org/maven2/org/apache/flink/flink-json/1.19.0/flink-json-1.19.0.jar; 

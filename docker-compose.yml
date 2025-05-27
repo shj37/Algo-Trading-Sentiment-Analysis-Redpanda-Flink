@@ -107,6 +107,9 @@ services:
       - |
         FLINK_PROPERTIES=
         jobmanager.rpc.address: jobmanager
+        jobmanager.bind-host: 0.0.0.0
+        rest.address: jobmanager
+        rest.bind-address: 0.0.0.0
     networks:
       - algotradingenvju
 
@@ -123,6 +126,7 @@ services:
         FLINK_PROPERTIES=
         jobmanager.rpc.address: jobmanager
         taskmanager.numberOfTaskSlots: 20
+        taskmanager.bind-host: 0.0.0.0
     networks:
       - algotradingenvju
 
